@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_final_locals: true
+    always_declare_return_types: true
+    always_use_package_imports: true
+    directives_ordering: true
+    require_trailing_commas: true
+    eol_at_end_of_file: true
+    use_key_in_widget_constructors: false
