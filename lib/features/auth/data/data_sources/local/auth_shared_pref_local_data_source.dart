@@ -5,15 +5,15 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @Singleton(as: AuthLocalDataSource)
-class AuthSharedPrefLocalDataSource extends AuthLocalDataSource {
-  final SharedPreferences sharedPref;
+class AuthSharedPrefLocalDataSource implements AuthLocalDataSource {
+  final SharedPreferences _sharedPref;
 
-  AuthSharedPrefLocalDataSource(this.sharedPref);
+  const AuthSharedPrefLocalDataSource(this._sharedPref);
 
   @override
   Future<void> saveToken(String token) async {
     try {
-      await sharedPref.setString(CacheConstants.tokenKey, token);
+      await _sharedPref.setString(CacheConstants.tokenKey, token);
     } catch (_) {
       throw const LocalException('Failed to save token');
     }
@@ -22,7 +22,7 @@ class AuthSharedPrefLocalDataSource extends AuthLocalDataSource {
   @override
   Future<String> getToken() async {
     try {
-      return sharedPref.getString(CacheConstants.tokenKey)!;
+      return _sharedPref.getString(CacheConstants.tokenKey)!;
     } catch (_) {
       throw const LocalException('Failed to get token');
     }
